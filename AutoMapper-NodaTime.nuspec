@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>AutoMapper-NodaTime</id>
+    <version>1.0.0</version>
+    <title>AutoMapper-NodaTime</title>
+    <authors>$Matt Johnson</authors>
+    <description>Provides NodaTime support for AutoMapper.</description>
+    <language>en-US</language>
+    <licenseUrl>https://raw.githubusercontent.com/mj1856/AutoMapper-NodaTime/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/mj1856/AutoMapper-NodaTime</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>automapper nodatime noda time</tags>
+  </metadata>
+  <files>
+    <file src="AutoMapper.NodaTime-Net40\bin\$configuration$\AutoMapper.NodaTime.dll" target="lib\net4-Client\AutoMapper.NodaTime.dll" />
+    <file src="AutoMapper.NodaTime-Net40\bin\$configuration$\AutoMapper.NodaTime.xml" target="lib\net4-Client\AutoMapper.NodaTime.xml" />
+    <file src="AutoMapper.NodaTime-Net40\bin\$configuration$\AutoMapper.NodaTime.pdb" target="lib\net4-Client\AutoMapper.NodaTime.pdb" />
+    <file src="AutoMapper.NodaTime\bin\$configuration$\AutoMapper.NodaTime.dll" target="lib\portable-net45+netcore+wpa81+wp8+MonoAndroid1+MonoTouch1+XamariniOS1\AutoMapper.NodaTime.dll" />
+    <file src="AutoMapper.NodaTime\bin\$configuration$\AutoMapper.NodaTime.xml" target="lib\portable-net45+netcore+wpa81+wp8+MonoAndroid1+MonoTouch1+XamariniOS1\AutoMapper.NodaTime.xml" />
+    <file src="AutoMapper.NodaTime\bin\$configuration$\AutoMapper.NodaTime.pdb" target="lib\portable-net45+netcore+wpa81+wp8+MonoAndroid1+MonoTouch1+XamariniOS1\AutoMapper.NodaTime.pdb" />
+  </files>
+</package>
