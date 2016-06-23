@@ -5,10 +5,12 @@ namespace AutoMapper.NodaTime
 {
     public class InstantConverter :
         ITypeConverter<Instant, DateTime>,
+        ITypeConverter<Instant, DateTime?>,
         ITypeConverter<Instant?, DateTime?>,
         ITypeConverter<Instant, DateTimeOffset>,
         ITypeConverter<Instant?, DateTimeOffset?>,
         ITypeConverter<DateTime, Instant>,
+        ITypeConverter<DateTime, Instant?>,
         ITypeConverter<DateTime?, Instant?>,
         ITypeConverter<DateTimeOffset, Instant>,
         ITypeConverter<DateTimeOffset?, Instant?>
@@ -16,16 +18,24 @@ namespace AutoMapper.NodaTime
         public void Configure(IConfiguration configuration)
         {
             configuration.CreateMap<Instant, DateTime>().ConvertUsing(this);
+            configuration.CreateMap<Instant, DateTime?>().ConvertUsing(this);
             configuration.CreateMap<Instant?, DateTime?>().ConvertUsing(this);
             configuration.CreateMap<Instant, DateTimeOffset>().ConvertUsing(this);
             configuration.CreateMap<Instant?, DateTimeOffset?>().ConvertUsing(this);
             configuration.CreateMap<DateTime, Instant>().ConvertUsing(this);
+            configuration.CreateMap<DateTime, Instant?>().ConvertUsing(this);
             configuration.CreateMap<DateTime?, Instant?>().ConvertUsing(this);
             configuration.CreateMap<DateTimeOffset, Instant>().ConvertUsing(this);
             configuration.CreateMap<DateTimeOffset?, Instant?>().ConvertUsing(this);
         }
 
         DateTime ITypeConverter<Instant, DateTime>.Convert(ResolutionContext context)
+        {
+            var instant = (Instant)context.SourceValue;
+            return instant.ToDateTimeUtc();
+        }
+
+        DateTime? ITypeConverter<Instant, DateTime?>.Convert(ResolutionContext context)
         {
             var instant = (Instant)context.SourceValue;
             return instant.ToDateTimeUtc();
@@ -56,6 +66,16 @@ namespace AutoMapper.NodaTime
         }
 
         Instant ITypeConverter<DateTime, Instant>.Convert(ResolutionContext context)
+        {
+            var dateTime = (DateTime)context.SourceValue;
+            var utcDateTime = dateTime.Kind == DateTimeKind.Unspecified
+                ? DateTime.SpecifyKind(dateTime, DateTimeKind.Utc)
+                : dateTime.ToUniversalTime();
+
+            return Instant.FromDateTimeUtc(utcDateTime);
+        }
+
+        Instant? ITypeConverter<DateTime, Instant?>.Convert(ResolutionContext context)
         {
             var dateTime = (DateTime)context.SourceValue;
             var utcDateTime = dateTime.Kind == DateTimeKind.Unspecified
