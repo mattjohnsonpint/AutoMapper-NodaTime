@@ -16,8 +16,8 @@ namespace AutoMapper.NodaTime.UnitTests
 
                 x.CreateMap<Foo1, Foo3>().ReverseMap();
                 x.CreateMap<Foo2, Foo4>().ReverseMap();
-                x.CreateMap<Foo1, Foo5>().ReverseMap();
-                x.CreateMap<Foo2, Foo6>().ReverseMap();
+                x.CreateMap<Foo3, Foo1>().ReverseMap();
+                x.CreateMap<Foo4, Foo2>().ReverseMap();
             });
 
             Mapper.AssertConfigurationIsValid();
@@ -25,30 +25,20 @@ namespace AutoMapper.NodaTime.UnitTests
 
         public class Foo1
         {
-            public Instant Bar { get; set; }
+            public OffsetDateTime Bar { get; set; }
         }
 
         public class Foo2
         {
-            public Instant? Bar { get; set; }
+            public OffsetDateTime? Bar { get; set; }
         }
 
         public class Foo3
         {
-            public DateTime Bar { get; set; }
-        }
-
-        public class Foo4
-        {
-            public DateTime? Bar { get; set; }
-        }
-
-        public class Foo5
-        {
             public DateTimeOffset Bar { get; set; }
         }
 
-        public class Foo6
+        public class Foo4
         {
             public DateTimeOffset? Bar { get; set; }
         }
