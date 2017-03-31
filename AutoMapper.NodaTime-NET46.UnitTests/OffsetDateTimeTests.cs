@@ -7,20 +7,20 @@ namespace AutoMapper.NodaTime.UnitTests
     public class OffsetDateTimeTests
     {
         [Fact]
-        public void ValidateOffsetDateTimeMappings()
+        public void ValidateMapping()
         {
-            Mapper.Reset();
-            Mapper.Initialize(x =>
-            {
-                new OffsetDateTimeConverter().Configure(x);
+            var config = new MapperConfiguration(x =>
+                {
+                    x.AddProfile<NodaTimeProfile>();
 
-                x.CreateMap<Foo1, Foo3>().ReverseMap();
-                x.CreateMap<Foo2, Foo4>().ReverseMap();
-                x.CreateMap<Foo3, Foo1>().ReverseMap();
-                x.CreateMap<Foo4, Foo2>().ReverseMap();
-            });
+                    x.CreateMap<Foo1, Foo3>().ReverseMap();
+                    x.CreateMap<Foo2, Foo4>().ReverseMap();
+                    x.CreateMap<Foo3, Foo1>().ReverseMap();
+                    x.CreateMap<Foo4, Foo2>().ReverseMap();
+                }
+            );
 
-            Mapper.AssertConfigurationIsValid();
+            config.AssertConfigurationIsValid();
         }
 
         public class Foo1
